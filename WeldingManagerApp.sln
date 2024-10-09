@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35122.118
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeldingManagerApp", "WeldingManagerApp.csproj", "{546D6195-5DF2-4394-A0B1-B0B5FE956D42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{546D6195-5DF2-4394-A0B1-B0B5FE956D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{546D6195-5DF2-4394-A0B1-B0B5FE956D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{546D6195-5DF2-4394-A0B1-B0B5FE956D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{546D6195-5DF2-4394-A0B1-B0B5FE956D42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {959AB5BE-D3ED-4CCC-9233-B6C48DCC6BA3}
+	EndGlobalSection
+EndGlobal
