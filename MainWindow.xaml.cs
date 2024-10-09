@@ -8,6 +8,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeldingManagerApp.Models;
+using WeldingManagerApp.Data;
+
 
 namespace WeldingManagerApp
 {
@@ -18,7 +21,24 @@ namespace WeldingManagerApp
     {
         public MainWindow()
         {
+            
             InitializeComponent();
+
+            using WeldingManagerDbContext context = new WeldingManagerDbContext();
+
+            Customer customer = new Customer()
+            {
+                Email = "mehran@",
+                Name = "mehran",
+                Budget = 10000000,
+            };
+            context.Add(customer);
+            context.SaveChanges();
+        }
+
+        private void SubmitCustomerBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow AddCustomer =new MainWindow();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace WeldingManagerApp.Data
         public DbSet<Order> Orders { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source = localhost; Initial Catalog = WeldingManagerDB; Integrated Security = True; Connect Timeout = 30; Encrypt = True; Trust Server Certificate = True; Application Intent = ReadWrite; Multi Subnet Failover = False");
+            optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=WeldingManagerDB;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
         }
     }
 }
