@@ -43,5 +43,11 @@ namespace WeldingManagerApp
             AddUser AddCustomer =new AddUser(Context);
             AddCustomer.ShowDialog();
         }
+
+        private void SubmitOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrder addOrder =new AddOrder(Context);
+            addOrder.ShowDialog();
+        }
     }
 }
