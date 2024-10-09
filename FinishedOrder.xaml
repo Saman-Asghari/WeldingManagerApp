@@ -1,0 +1,30 @@
+﻿<Window x:Class="WeldingManagerApp.FinishedOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeldingManagerApp"
+        mc:Ignorable="d"
+        Title="FinishedOrder" Height="450" Width="800">
+    <Grid>
+        <Label Content="Order Id" HorizontalAlignment="Left" Height="29" Margin="121,84,0,0" VerticalAlignment="Top" Width="125"/>
+        <TextBox x:Name="OrderIdBox" HorizontalAlignment="Left" Height="32" Margin="287,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134"/>
+        <Label Content="Finished Price" HorizontalAlignment="Left" Height="29" Margin="121,151,0,0" VerticalAlignment="Top" Width="99"/>
+        <TextBox x:Name="FinishedPriceBox" HorizontalAlignment="Left" Height="29" Margin="287,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,220,0,0">
+            <!-- DatePicker for Date selection -->
+            <DatePicker x:Name="DeliveredTime" SelectedDate="2024-01-01" />
+            <!-- DatePicker for Date selection -->
+            <!-- DatePicker for Date selection -->
+            <!-- DatePicker for Date selection -->
+            <!-- DatePicker for Date selection -->
+
+            <!-- TextBox for Time input -->
+            <!-- Button to get DateTime -->
+        </StackPanel>
+
+        <Button x:Name="SubmitBtn" Content="Accept" HorizontalAlignment="Left" Margin="308,288,0,0" VerticalAlignment="Top" Width="113" Height="33" Click="SubmitBtn_Click"/>
+        <Label Content="Finished time" HorizontalAlignment="Left" Height="31" Margin="121,220,0,0" VerticalAlignment="Top" Width="125"/>
+
+    </Grid>
+</Window>

@@ -49,5 +49,11 @@ namespace WeldingManagerApp
             AddOrder addOrder =new AddOrder(Context);
             addOrder.ShowDialog();
         }
+
+        private void FinishingOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FinishedOrder finishedOrder = new FinishedOrder(Context);
+            finishedOrder.ShowDialog();
+        }
     }
 }

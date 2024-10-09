@@ -25,12 +25,14 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Buttons in Right Part -->
             <Button x:Name="SubmitCustomerBtn" Content="Submit a Customer" Grid.Row="0" Margin="10" Click="SubmitCustomerBtn_Click" />
             <Button x:Name="SubmitOrderBtn" Content="Submit an Order" Grid.Row="1" Margin="10" Click="SubmitOrderBtn_Click" />
-            <Button x:Name="ReportBtn" Content="Report" Grid.Row="2" Margin="10" />
+            <Button x:Name="FinishingOrderBtn" Content="Finishing an Order" Grid.Row="2" Margin="10" Click="FinishingOrderBtn_Click"/>
+            <Button x:Name="ReportBtn" Content="Report" Grid.Row="3" Margin="10" />
         </Grid>
     </Grid>
 </Window>
