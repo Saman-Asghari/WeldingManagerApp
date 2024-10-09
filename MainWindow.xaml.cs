@@ -19,26 +19,29 @@ namespace WeldingManagerApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public WeldingManagerDbContext Context;
         public MainWindow()
         {
             
             InitializeComponent();
 
-            using WeldingManagerDbContext context = new WeldingManagerDbContext();
+            Context = new WeldingManagerDbContext();
 
-            Customer customer = new Customer()
+            /*Customer customer = new Customer()
             {
                 Email = "mehran@",
                 Name = "mehran",
                 Budget = 10000000,
             };
-            context.Add(customer);
-            context.SaveChanges();
+            Context.Add(customer);
+            Context.SaveChanges();
+            */
         }
 
         private void SubmitCustomerBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow AddCustomer =new MainWindow();
+            AddUser AddCustomer =new AddUser(Context);
+            AddCustomer.ShowDialog();
         }
     }
 }

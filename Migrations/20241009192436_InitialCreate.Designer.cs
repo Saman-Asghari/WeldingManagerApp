@@ -12,7 +12,7 @@ using WeldingManagerApp.Data;
 namespace WeldingManagerApp.Migrations
 {
     [DbContext(typeof(WeldingManagerDbContext))]
-    [Migration("20241009154601_InitialCreate")]
+    [Migration("20241009192436_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
