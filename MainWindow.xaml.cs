@@ -14,9 +14,6 @@ using WeldingManagerApp.Data;
 
 namespace WeldingManagerApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public WeldingManagerDbContext Context;
@@ -24,8 +21,9 @@ namespace WeldingManagerApp
         {
             
             InitializeComponent();
-
             Context = new WeldingManagerDbContext();
+            LoadOrders();
+            
 
             /*Customer customer = new Customer()
             {
@@ -36,6 +34,41 @@ namespace WeldingManagerApp
             Context.Add(customer);
             Context.SaveChanges();
             */
+        }
+        public void LoadOrders()
+        {
+            var orders = Context.Orders.ToList();
+            foreach (var order in orders)
+            {
+                var listItem = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(5) };
+                var checkBox = new CheckBox
+                {
+                    Content = order.Description, // Adjust this to your order's property
+                    Tag = order, // Store the order in the Tag for reference
+                    Margin = new Thickness(5)
+                };
+                checkBox.Checked += CheckBox_Checked;
+
+                // Add checkbox to the stack panel
+                listItem.Children.Add(checkBox);
+                // Add the stack panel to the ListBox
+                
+                orderListBox.Items.Add(listItem);
+            }
+        }
+        public void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                var order = checkBox.Tag as Order;
+                Context.Orders.Remove(order);
+                Context.SaveChanges();
+                // Remove the corresponding order from the ListBox
+                orderListBox.Items.Remove((StackPanel)checkBox.Parent);
+                
+               
+            }
         }
 
         private void SubmitCustomerBtn_Click(object sender, RoutedEventArgs e)
