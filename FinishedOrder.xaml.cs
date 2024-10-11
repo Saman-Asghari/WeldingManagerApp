@@ -34,6 +34,7 @@ namespace WeldingManagerApp
             if(Order != null)
             {
                 Order.lastPrice=int.Parse(FinishedPriceBox.Text);
+                Order.EndTime=DeliveredTime.SelectedDate??DateTime.Now;
                 _context.SaveChanges();
             }
             else

@@ -12,8 +12,8 @@ using WeldingManagerApp.Data;
 namespace WeldingManagerApp.Migrations
 {
     [DbContext(typeof(WeldingManagerDbContext))]
-    [Migration("20241009192436_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241011234955_initial-create")]
+    partial class initialcreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,9 @@ namespace WeldingManagerApp.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EstimatedTime")
                         .HasColumnType("datetime2");

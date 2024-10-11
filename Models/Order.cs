@@ -16,6 +16,8 @@ namespace WeldingManagerApp.Models
         public int lastPrice { get; set; }
         public DateTime EstimatedTime { get; set; }
 
+        public DateTime EndTime { get; set; }
+
         //foreign key to the customer
         public int CustomerId { get; set; }
         // Navigation property for the customer

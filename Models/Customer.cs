@@ -12,7 +12,7 @@ namespace WeldingManagerApp.Models
         public string Name { get; set; }
         public string Email { get; set; } = null;
         public int Budget { get; set; }
-        public Order[] Orders { get; set; } = null;
+        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
 
     }
