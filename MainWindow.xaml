@@ -15,7 +15,19 @@
         <StackPanel Grid.Column="0" Background="LightGray">
             <TextBlock Text="Order List" FontSize="24" Margin="10"/>
             <ListBox x:Name="orderListBox" Margin="10">
-                <!-- Items will be added dynamically -->
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Content="{Binding Description}" 
+                                      Tag="{Binding}" 
+                                      Checked="CheckBox_Checked" 
+                                      Margin="5"/>
+                            <TextBlock Text="{Binding OrderId}" Margin="5"/>
+                            <TextBlock Text="{Binding LastPrice, StringFormat=C}" Margin="5"/>
+                            <TextBlock Text="{Binding CustomerId}" Margin="5"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
 

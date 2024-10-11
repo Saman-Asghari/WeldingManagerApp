@@ -21,7 +21,7 @@
         <TextBox x:Name="BasePriceBox" HorizontalAlignment="Left" Height="28" Margin="222,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,240,0,0">
             <!-- DatePicker for Date selection -->
-            <DatePicker x:Name="DeliverTime" SelectedDate="2024-01-01" />
+            <DatePicker x:Name="DeliverTime" />
 
             <!-- TextBox for Time input -->
             <!-- Button to get DateTime -->

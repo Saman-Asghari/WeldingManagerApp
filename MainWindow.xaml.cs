@@ -10,6 +10,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WeldingManagerApp.Models;
 using WeldingManagerApp.Data;
+using System.Collections.ObjectModel;
 
 
 namespace WeldingManagerApp
@@ -17,6 +18,7 @@ namespace WeldingManagerApp
     public partial class MainWindow : Window
     {
         public WeldingManagerDbContext Context;
+        private ObservableCollection<Order> ArrayOrders;
         public MainWindow()
         {
             
@@ -37,24 +39,13 @@ namespace WeldingManagerApp
         }
         public void LoadOrders()
         {
-            var orders = Context.Orders.ToList();
-            foreach (var order in orders)
-            {
-                var listItem = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(5) };
-                var checkBox = new CheckBox
-                {
-                    Content = order.Description, // Adjust this to your order's property
-                    Tag = order, // Store the order in the Tag for reference
-                    Margin = new Thickness(5)
-                };
-                checkBox.Checked += CheckBox_Checked;
+            var orderList = Context.Orders.ToList();
+            ArrayOrders = new ObservableCollection<Order>(orderList);
 
-                // Add checkbox to the stack panel
-                listItem.Children.Add(checkBox);
-                // Add the stack panel to the ListBox
-                
-                orderListBox.Items.Add(listItem);
-            }
+            // Add the stack panel to the ListBox
+
+            orderListBox.ItemsSource=ArrayOrders;
+            
         }
         public void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -65,9 +56,7 @@ namespace WeldingManagerApp
                 Context.Orders.Remove(order);
                 Context.SaveChanges();
                 // Remove the corresponding order from the ListBox
-                orderListBox.Items.Remove((StackPanel)checkBox.Parent);
-                
-               
+               ArrayOrders.Remove(order);
             }
         }
 
@@ -80,6 +69,7 @@ namespace WeldingManagerApp
         private void SubmitOrderBtn_Click(object sender, RoutedEventArgs e)
         {
             AddOrder addOrder =new AddOrder(Context);
+            addOrder.OrderAdded += OnOrderAdded;
             addOrder.ShowDialog();
         }
 
@@ -87,6 +77,10 @@ namespace WeldingManagerApp
         {
             FinishedOrder finishedOrder = new FinishedOrder(Context);
             finishedOrder.ShowDialog();
+        }
+        private void OnOrderAdded(Order newOrder)
+        {
+            ArrayOrders.Add(newOrder); // Add the new order to the ObservableCollection
         }
     }
 }

@@ -22,6 +22,8 @@ namespace WeldingManagerApp
     public partial class AddOrder : Window
     {
         private WeldingManagerDbContext _context;
+        public event Action<Order> OrderAdded;
+
         public AddOrder(WeldingManagerDbContext dbContext)
         {
             InitializeComponent();
@@ -57,6 +59,7 @@ namespace WeldingManagerApp
             };
             _context.Orders.Add(NewOrder);
             _context.SaveChanges();
+            OrderAdded?.Invoke(NewOrder);
             this.Close();
         }
     }
