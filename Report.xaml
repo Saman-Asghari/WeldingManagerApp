@@ -21,7 +21,7 @@
         <TextBox x:Name="EndPriceBox" HorizontalAlignment="Left" Margin="516,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Order Id" HorizontalAlignment="Left" Margin="142,247,0,0" VerticalAlignment="Top" Width="65"/>
         <TextBox x:Name="OrderIdBox" HorizontalAlignment="Left" Margin="259,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="FilterBtn" Content="Filter" HorizontalAlignment="Left" Height="25" Margin="377,344,0,0" VerticalAlignment="Top" Width="116"/>
+        <Button x:Name="FilterBtn" Content="Filter" HorizontalAlignment="Left" Height="25" Margin="377,344,0,0" VerticalAlignment="Top" Width="116" Click="FilterBtn_Click"/>
 
 
 

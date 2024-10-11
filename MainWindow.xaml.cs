@@ -82,5 +82,11 @@ namespace WeldingManagerApp
         {
             ArrayOrders.Add(newOrder); // Add the new order to the ObservableCollection
         }
+
+        private void ReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Report report = new Report(Context);
+            report.ShowDialog();
+        }
     }
 }
