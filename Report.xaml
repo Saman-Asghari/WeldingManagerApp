@@ -6,24 +6,85 @@
         xmlns:local="clr-namespace:WeldingManagerApp"
         mc:Ignorable="d"
         Title="Report" Height="450" Width="800">
-    <Grid>
-        <Label Content="Customer Id" HorizontalAlignment="Left" Margin="142,74,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="CustomerIdBox" HorizontalAlignment="Left" Height="26" Margin="265,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="108"/>
+    <Grid Margin="0,0,0,-6">
+        <!-- Define two rows: Top (Auto) and Bottom (*) -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="130"/>
+            <!-- Top part, currently empty -->
+            <RowDefinition/>
+            <!-- Bottom part, where your elements will go -->
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="10,10,10,10">
+            <Label Content="Filtered Orders" FontSize="16" FontWeight="Bold" Margin="10"/>
+            <ListBox x:Name="OrderListBox" HorizontalAlignment="Left" Height="200" Width="780">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Order ID: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding OrderId}" Margin="5,0"/>
 
-        <DatePicker x:Name="StartDateDatePicker" HorizontalAlignment="Left" Margin="268,125,0,0" VerticalAlignment="Top"/>
-        <Label Content="from" HorizontalAlignment="Left" Margin="142,124,0,0" VerticalAlignment="Top" Width="75"/>
+                            <TextBlock Text="Customer ID: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding CustomerId}" Margin="5,0"/>
 
-        <Label Content="to" HorizontalAlignment="Left" Margin="424,125,0,0" VerticalAlignment="Top" Width="69"/>
-        <DatePicker x:Name="EndDateDatePicker" HorizontalAlignment="Left" Margin="516,127,0,0" VerticalAlignment="Top"/>
-        <Label Content="price from" HorizontalAlignment="Left" Margin="142,191,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="StartPriceBox" HorizontalAlignment="Left" Margin="259,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="to&#xD;&#xA;" HorizontalAlignment="Left" Margin="421,187,0,0" VerticalAlignment="Top" Height="30" Width="72"/>
-        <TextBox x:Name="EndPriceBox" HorizontalAlignment="Left" Margin="516,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Order Id" HorizontalAlignment="Left" Margin="142,247,0,0" VerticalAlignment="Top" Width="65"/>
-        <TextBox x:Name="OrderIdBox" HorizontalAlignment="Left" Margin="259,247,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="FilterBtn" Content="Filter" HorizontalAlignment="Left" Height="25" Margin="377,344,0,0" VerticalAlignment="Top" Width="116" Click="FilterBtn_Click"/>
+                            <TextBlock Text="Finished Price: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding lastPrice}" Margin="5,0"/>
+
+                            <TextBlock Text="Order Date: " FontWeight="Bold"/>
+                            <TextBlock Text="{Binding EstimatedTime, StringFormat={}{0:yyyy-MM-dd}}" Margin="5,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
 
 
 
+        <!-- Bottom Part (StackPanel to organize your elements vertically) -->
+        <StackPanel Grid.Row="1" Margin="20,20,20,20">
+
+            <!-- Customer Id -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Customer Id" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="CustomerIdBox" Width="120" Height="26"/>
+            </StackPanel>
+
+            <!-- Start Date -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="from" VerticalAlignment="Center" Width="120"/>
+                <DatePicker x:Name="StartDateDatePicker" Width="150"/>
+            </StackPanel>
+
+            <!-- End Date -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="to" VerticalAlignment="Center" Width="120"/>
+                <DatePicker x:Name="EndDateDatePicker" Width="150"/>
+            </StackPanel>
+
+            <!-- Price Range (Start) -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="price from" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="StartPriceBox" Width="120"/>
+            </StackPanel>
+
+            <!-- Price Range (End) -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="to" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="EndPriceBox" Width="120"/>
+            </StackPanel>
+
+            <!-- Order Id -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Order Id" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="OrderIdBox" Width="120"/>
+            </StackPanel>
+
+            <!-- Filter Button -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                <Button x:Name="FilterBtn" Content="Filter" Width="120" Margin="10,0,0,0" Click="FilterBtn_Click"/>
+                <Button x:Name="CreateImageBtn" Content="Clear" Width="120" Margin="10,0,0,0" Click="ClearBtn_Click"/>
+                <Button x:Name="ExportBtn" Content="Export" Width="120" Margin="10,0,0,0" Click="ExportBtn_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
+
 </Window>

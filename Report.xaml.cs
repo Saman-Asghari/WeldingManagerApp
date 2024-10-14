@@ -27,7 +27,8 @@ namespace WeldingManagerApp
     {
         private ObservableCollection<Order> Orders;
         private WeldingManagerDbContext _context;
-
+        public List<Order> FilteredOrders;
+        int help = 0;
         public Report(WeldingManagerDbContext dbcontext)
         {
             InitializeComponent();
@@ -37,21 +38,6 @@ namespace WeldingManagerApp
         }
 
         private void FilterBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(OrderIdBox.Text))
-            {
-                GlobalFilter();
-            }
-            else
-            {
-                int orderId=int.Parse(OrderIdBox.Text);
-                var order=_context.Orders.First(o => o.OrderId == orderId);
-                string baseDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.FullName;
-                string folderPath = System.IO.Path.Combine(baseDirectory, "Orders Photos");
-                CreateOrderImage(order, folderPath);
-            }
-        }
-        private void GlobalFilter() 
         {
             if (string.IsNullOrEmpty(CustomerIdBox.Text))
             {
@@ -65,21 +51,23 @@ namespace WeldingManagerApp
                 int MinPrice = int.Parse(StartPriceBox.Text);
                 int MaxPrice = int.Parse(EndPriceBox.Text);
                 int UserId = int.Parse(CustomerIdBox.Text);
-                var FilteredOrders = _context.Orders.Where(o => o.EndTime > StartDate.Value
+                FilteredOrders = _context.Orders.Where(o => o.EndTime > StartDate.Value
                                                      && o.EndTime < EndDate.Value
                                                      && o.lastPrice >= MinPrice
                                                      && o.lastPrice <= MaxPrice
-                                                     && o.CustomerId== UserId).ToList();
-                if (FilteredOrders.Any())
-                {
-                    SaveOrdersToExcel(FilteredOrders, StartDate.Value, EndDate.Value, MinPrice, MaxPrice,UserId);
-                }
-                else
+                                                     && o.CustomerId == UserId).ToList();
+                
+                if(!FilteredOrders.Any()) 
                 {
                     MessageBox.Show("No orders found for the selected criteria.", "No Data", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
+                help = 1;
+                OrderListBox.ItemsSource = FilteredOrders;
+
             }
         }
+
+        
         private void DatePriceFilter()
         {
             DateTime? StartDate=StartDateDatePicker.SelectedDate;
@@ -88,18 +76,17 @@ namespace WeldingManagerApp
             int MinPrice = int.Parse(StartPriceBox.Text);
             int MaxPrice=int.Parse(EndPriceBox.Text);
 
-            var FilteredOrders = _context.Orders.Where(o => o.EstimatedTime > StartDate.Value
+            FilteredOrders = _context.Orders.Where(o => o.EstimatedTime > StartDate.Value
                                                      && o.EstimatedTime < EndDate.Value
                                                      && o.lastPrice >= MinPrice
                                                      && o.lastPrice <= MaxPrice).ToList();
-            if (FilteredOrders.Any())
-            {
-                SaveOrdersToExcel2(FilteredOrders, StartDate.Value, EndDate.Value, MinPrice, MaxPrice);
-            }
-            else
+            
+            if(!FilteredOrders.Any()) 
             {
                 MessageBox.Show("No orders found for the selected criteria.", "No Data", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            help = 2;
+            OrderListBox.ItemsSource = FilteredOrders;
 
         }
         
@@ -235,6 +222,28 @@ namespace WeldingManagerApp
             // Save the image
             string imageFilePath = System.IO.Path.Combine(folderPath, $"Order_{order.OrderId}.png");
             bitmap.Save(imageFilePath, System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (help == 1)
+            {
+                var start=StartDateDatePicker.SelectedDate ?? DateTime.MinValue;
+                var end=EndDateDatePicker.SelectedDate ?? DateTime.MinValue;
+                SaveOrdersToExcel(FilteredOrders,start,end,int.Parse(StartPriceBox.Text),int.Parse(EndPriceBox.Text),int.Parse(CustomerIdBox.Text));
+            }
+            if (help == 2) 
+            {
+                var start = StartDateDatePicker.SelectedDate ?? DateTime.MinValue;
+                var end = EndDateDatePicker.SelectedDate ?? DateTime.MinValue;
+                SaveOrdersToExcel2(FilteredOrders, start, end, int.Parse(StartPriceBox.Text), int.Parse(EndPriceBox.Text));
+
+            }
         }
     }
 }
