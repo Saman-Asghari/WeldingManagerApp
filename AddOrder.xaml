@@ -3,32 +3,88 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeldingManagerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddOrder" Height="450" Width="800">
-    <Grid>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="69,35,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="26" Margin="223,35,0,0" TextWrapping="Wrap" Text="Enter Description" VerticalAlignment="Top" Width="188"/>
-        <Label Content="Piece Name" HorizontalAlignment="Left" Height="24" Margin="69,85,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="PieceBox" HorizontalAlignment="Left" Height="27" Margin="223,85,0,0" TextWrapping="Wrap" Text="Enter the piece name" VerticalAlignment="Top" Width="188"/>
-        <Label Content="Difficulty" HorizontalAlignment="Left" Height="30" Margin="69,133,0,0" VerticalAlignment="Top" Width="85"/>
-        <ComboBox x:Name="DifficultyChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="223,133,0,0">
-            <ComboBoxItem Content="Hard" />
-            <ComboBoxItem Content="Meduim" />
-            <ComboBoxItem Content="Easy" />
-        </ComboBox>
-        <Label Content="Base Price" HorizontalAlignment="Left" Height="28" Margin="69,189,0,0" VerticalAlignment="Top" Width="93"/>
-        <TextBox x:Name="BasePriceBox" HorizontalAlignment="Left" Height="28" Margin="222,189,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="190"/>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="242,240,0,0">
-            <!-- DatePicker for Date selection -->
-            <DatePicker x:Name="DeliverTime" />
+        Title="Add Order" Height="450" Width="800"
+        Background="{DynamicResource MaterialDesignPaper}">
 
-            <!-- TextBox for Time input -->
-            <!-- Button to get DateTime -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="Add New Order" 
+                   FontSize="30" 
+                   FontWeight="Bold" 
+                   Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+                   HorizontalAlignment="Center" Height="60" VerticalAlignment="Top"/>
+
+        <!-- Form Section -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="400" Margin="0,0,0,6">
+
+            <!-- Description -->
+            <TextBox x:Name="DescriptionBox" 
+                     materialDesign:HintAssist.Hint="Description" 
+                     Width="300" 
+                     Height="40" 
+                     Margin="0,0,0,10"
+                     Text=""/>
+
+            <!-- Piece Name -->
+            <TextBox x:Name="PieceBox" 
+                     materialDesign:HintAssist.Hint="Piece Name" 
+                     Width="300" 
+                     Height="40"
+                     Margin="0,0,0,10"
+                     Text=""/>
+            <ComboBox x:Name="DifficultyChoice" 
+                      materialDesign:HintAssist.Hint="Difficulty" 
+                      Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                      Width="300" 
+                      Margin="0,0,0,10"
+                      Height="40">
+                <ComboBoxItem Content="Hard"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="Easy"/>
+            </ComboBox>
+
+            <!-- Difficulty -->
+
+            <!-- Base Price -->
+            <TextBox x:Name="BasePriceBox" 
+                     materialDesign:HintAssist.Hint="Base Price" 
+                     Width="300" 
+                     Height="40" 
+                     Margin="0,0,0,10"
+                     Text=""/>
+
+            <!-- Deliver Time -->
+            <DatePicker x:Name="DeliverTime" 
+                        materialDesign:HintAssist.Hint="Deliver Time" 
+                        Style="{StaticResource MaterialDesignDatePicker}" 
+                        Width="300" 
+                        Margin="0,0,0,10"
+                        Height="40"/>
+
+            <!-- Customer ID -->
+            <TextBox x:Name="CustomerIdBox" 
+                     materialDesign:HintAssist.Hint="Customer ID" 
+                     Width="300" 
+                     Height="45" 
+                     Margin="0,0,0,10"
+                     Text=""/>
+            <Button x:Name="SubmitOrderBtn" 
+                    Content="Submit Order" 
+                    Style="{StaticResource MaterialDesignRaisedButton}" 
+                    Background="Purple"
+                    Foreground="White" 
+                    Width="200" 
+                    Height="50" 
+                    Click="SubmitOrderBtn_Click"/>
+
+            <!-- Submit Button -->
         </StackPanel>
-        <Label Content="Deliver time" HorizontalAlignment="Left" Height="35" Margin="79,240,0,0" VerticalAlignment="Top" Width="95"/>
-        <Label Content="Customer id" HorizontalAlignment="Left" Height="27" Margin="68,296,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="CustomerIdBox" HorizontalAlignment="Left" Height="28" Margin="222,296,0,0" TextWrapping="Wrap" Text="Enter" VerticalAlignment="Top" Width="158"/>
-        <Button x:Name="SubmitOrderBtn" Content="Accept" HorizontalAlignment="Left" Margin="242,368,0,0" VerticalAlignment="Top" Width="96" Click="SubmitOrderBtn_Click"/>
     </Grid>
 </Window>

@@ -3,32 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeldingManagerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Report" Height="450" Width="800">
-    <Grid Margin="0,0,0,-6">
+        Title="Report" Height="600" Width="800"
+        Background="{DynamicResource MaterialDesignPaper}"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="20">
         <!-- Define two rows: Top (Auto) and Bottom (*) -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="130"/>
-            <!-- Top part, currently empty -->
-            <RowDefinition/>
-            <!-- Bottom part, where your elements will go -->
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="10,10,10,10">
-            <Label Content="Filtered Orders" FontSize="16" FontWeight="Bold" Margin="10"/>
-            <ListBox x:Name="OrderListBox" HorizontalAlignment="Left" Height="200" Width="780">
+
+        <!-- Title Section with Filtered Orders Label -->
+        <StackPanel Grid.Row="0" Margin="10">
+            <TextBlock Text="Filtered Orders" 
+                       FontSize="20" 
+                       FontWeight="Bold" 
+                       Foreground="{DynamicResource MaterialDesignBody}" 
+                       Margin="0,0,0,10"/>
+            <ListBox x:Name="OrderListBox" 
+                     Height="143" 
+                     Background="{DynamicResource MaterialDesignPaper}" 
+                     BorderBrush="{DynamicResource MaterialDesignDivider}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5">
                             <TextBlock Text="Order ID: " FontWeight="Bold"/>
                             <TextBlock Text="{Binding OrderId}" Margin="5,0"/>
-
                             <TextBlock Text="Customer ID: " FontWeight="Bold"/>
                             <TextBlock Text="{Binding CustomerId}" Margin="5,0"/>
-
                             <TextBlock Text="Finished Price: " FontWeight="Bold"/>
                             <TextBlock Text="{Binding lastPrice}" Margin="5,0"/>
-
                             <TextBlock Text="Order Date: " FontWeight="Bold"/>
                             <TextBlock Text="{Binding EstimatedTime, StringFormat={}{0:yyyy-MM-dd}}" Margin="5,0"/>
                         </StackPanel>
@@ -37,54 +43,74 @@
             </ListBox>
         </StackPanel>
 
-
-
-        <!-- Bottom Part (StackPanel to organize your elements vertically) -->
-        <StackPanel Grid.Row="1" Margin="20,20,20,20">
-
+        <!-- Bottom Part (Filter Options and Buttons) -->
+        <StackPanel Grid.Row="1" Margin="10">
             <!-- Customer Id -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="Customer Id" VerticalAlignment="Center" Width="120"/>
-                <TextBox x:Name="CustomerIdBox" Width="120" Height="26"/>
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBox x:Name="CustomerIdBox"
+                         Width="200" 
+                         Height="52" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                         materialDesign:HintAssist.Hint="Customer ID"/>
             </StackPanel>
 
-            <!-- Start Date -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="from" VerticalAlignment="Center" Width="120"/>
-                <DatePicker x:Name="StartDateDatePicker" Width="150"/>
+            <!-- Date Pickers for Date Range -->
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                <DatePicker x:Name="StartDateDatePicker" Width="200" 
+                            Style="{StaticResource MaterialDesignDatePicker}" 
+                            materialDesign:HintAssist.Hint="Start Date"/>
+                <DatePicker x:Name="EndDateDatePicker" Width="200" Margin="20,0,0,0" 
+                            Style="{StaticResource MaterialDesignDatePicker}" 
+                            materialDesign:HintAssist.Hint="End Date"/>
             </StackPanel>
 
-            <!-- End Date -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="to" VerticalAlignment="Center" Width="120"/>
-                <DatePicker x:Name="EndDateDatePicker" Width="150"/>
-            </StackPanel>
-
-            <!-- Price Range (Start) -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="price from" VerticalAlignment="Center" Width="120"/>
-                <TextBox x:Name="StartPriceBox" Width="120"/>
-            </StackPanel>
-
-            <!-- Price Range (End) -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="to" VerticalAlignment="Center" Width="120"/>
-                <TextBox x:Name="EndPriceBox" Width="120"/>
+            <!-- Price Range -->
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBox x:Name="StartPriceBox"
+                         Width="200" 
+                         Height="56" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                         materialDesign:HintAssist.Hint="Price From"/>
+                <TextBox x:Name="EndPriceBox"
+                         Width="200" 
+                         Height="56" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                         materialDesign:HintAssist.Hint="Price To" 
+                         Margin="20,0,0,0"/>
             </StackPanel>
 
             <!-- Order Id -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <Label Content="Order Id" VerticalAlignment="Center" Width="120"/>
-                <TextBox x:Name="OrderIdBox" Width="120"/>
+            <StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+                <TextBox x:Name="OrderIdBox"
+                         Width="200" 
+                         Height="56" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                         materialDesign:HintAssist.Hint="Order ID"/>
             </StackPanel>
 
-            <!-- Filter Button -->
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
-                <Button x:Name="FilterBtn" Content="Filter" Width="120" Margin="10,0,0,0" Click="FilterBtn_Click"/>
-                <Button x:Name="CreateImageBtn" Content="Clear" Width="120" Margin="10,0,0,0" Click="ClearBtn_Click"/>
-                <Button x:Name="ExportBtn" Content="Export" Width="120" Margin="10,0,0,0" Click="ExportBtn_Click"/>
+            <!-- Action Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,10,5,5">
+                <Button x:Name="FilterBtn" 
+                        Content="Filter" 
+                        Width="120" 
+                        Height="40" 
+                        Style="{StaticResource MaterialDesignRaisedButton}" 
+                        Click="FilterBtn_Click"/>
+                <Button x:Name="CreateImageBtn" 
+                        Content="Close" 
+                        Width="120" 
+                        Height="40" 
+                        Style="{StaticResource MaterialDesignRaisedButton}" 
+                        Margin="10,0,0,0" 
+                        Click="ClearBtn_Click"/>
+                <Button x:Name="ExportBtn" 
+                        Content="Export" 
+                        Width="120" 
+                        Height="40" 
+                        Style="{StaticResource MaterialDesignRaisedButton}" 
+                        Margin="10,0,0,0" 
+                        Click="ExportBtn_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>
-
 </Window>

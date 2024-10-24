@@ -64,6 +64,10 @@ namespace WeldingManagerApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DoneDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -71,6 +75,9 @@ namespace WeldingManagerApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PaidPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("PieceName")

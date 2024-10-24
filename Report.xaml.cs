@@ -226,7 +226,7 @@ namespace WeldingManagerApp
 
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
 
         private void ExportBtn_Click(object sender, RoutedEventArgs e)

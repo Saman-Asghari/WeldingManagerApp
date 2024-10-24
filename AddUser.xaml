@@ -4,16 +4,67 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeldingManagerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddUser" Height="450" Width="800">
-    <Grid>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="198,97,0,0" VerticalAlignment="Top" Width="76"/>
-        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="26" Margin="328,97,0,0" TextWrapping="Wrap" Text="Enter name" VerticalAlignment="Top" Width="108"/>
-        <Label Content="email" HorizontalAlignment="Left" Margin="198,145,0,0" VerticalAlignment="Top" Width="62"/>
-        <Label Content="Budget" HorizontalAlignment="Left" Margin="198,191,0,0" VerticalAlignment="Top" Width="62"/>
-        <TextBox x:Name="EmailBox" HorizontalAlignment="Left" Height="26" Margin="328,145,0,0" TextWrapping="Wrap" Text="Enter email" VerticalAlignment="Top" Width="108" TextChanged="EmailBox_TextChanged"/>
-        <TextBox x:Name="BudgetBox" HorizontalAlignment="Left" Height="26" Margin="328,191,0,0" TextWrapping="Wrap" Text="Enter budget" VerticalAlignment="Top" Width="108"/>
-        <Button x:Name="SubmitBtn" Content="Accept" HorizontalAlignment="Left" Margin="295,254,0,0" VerticalAlignment="Top" Width="105" Click="SubmitBtn_Click"/>
+        Title="Add User" Height="450" Width="800" 
+        Background="{DynamicResource MaterialDesignPaper}">
 
+    <!-- Add a Grid layout -->
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Title -->
+        <TextBlock Text="Add New User" 
+                   FontSize="30" 
+                   FontWeight="Bold" 
+                   Foreground="{DynamicResource PrimaryHueDarkBrush}" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,30"/>
+
+        <!-- Form Fields -->
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Width="400" >
+
+            <!-- Name -->
+            <TextBox x:Name="NameBox" 
+                     materialDesign:HintAssist.Hint="Name"  
+                     Width="300" 
+                     Height="40" 
+                     Text=""/>
+
+            <!-- Email -->
+            <TextBox x:Name="EmailBox" 
+                     materialDesign:HintAssist.Hint="Email" 
+                     Width="300" 
+                     Height="40" 
+                     Text="" 
+                     TextChanged="EmailBox_TextChanged"/>
+
+            <!-- Budget -->
+            <TextBox x:Name="BudgetBox" 
+                     materialDesign:HintAssist.Hint="Budget" 
+                     Width="300" 
+                     Height="40" 
+                     Text=""/>
+
+        </StackPanel>
+
+        <!-- Submit Button -->
+        <Button x:Name="SubmitBtn" 
+                Content="Submit" 
+                Style="{StaticResource MaterialDesignRaisedButton}" 
+                Background="Purple"
+                Foreground="White"
+                Width="200" 
+                Height="50" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Grid.Row="2" 
+                Margin="0,20,0,0" 
+                Click="SubmitBtn_Click"/>
     </Grid>
 </Window>

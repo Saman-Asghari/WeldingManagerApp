@@ -3,28 +3,70 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WeldingManagerApp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="FinishedOrder" Height="450" Width="800">
-    <Grid>
-        <Label Content="Order Id" HorizontalAlignment="Left" Height="29" Margin="121,84,0,0" VerticalAlignment="Top" Width="125"/>
-        <TextBox x:Name="OrderIdBox" HorizontalAlignment="Left" Height="32" Margin="287,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134"/>
-        <Label Content="Finished Price" HorizontalAlignment="Left" Height="29" Margin="121,151,0,0" VerticalAlignment="Top" Width="99"/>
-        <TextBox x:Name="FinishedPriceBox" HorizontalAlignment="Left" Height="29" Margin="287,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="134"/>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,220,0,0">
-            <!-- DatePicker for Date selection -->
-            <DatePicker x:Name="DeliveredTime" SelectedDate="2024-01-01" />
-            <!-- DatePicker for Date selection -->
-            <!-- DatePicker for Date selection -->
-            <!-- DatePicker for Date selection -->
-            <!-- DatePicker for Date selection -->
+        Title="Finished Order" Height="500" Width="800" WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="121*" />
+            <ColumnDefinition Width="639*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <!-- TextBox for Time input -->
-            <!-- Button to get DateTime -->
+        <!-- Order Id with Hint -->
+        <TextBox x:Name="OrderIdBox" Grid.Column="1" Margin="133,0,291,20" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                 materialDesign:HintAssist.Hint="Order ID" 
+                 VerticalAlignment="Center" Height="50"/>
+
+        <!-- Finished Price with Hint -->
+        <TextBox x:Name="FinishedPriceBox" 
+                 Grid.Row="1" Grid.Column="1" Margin="133,0,291,20" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                 materialDesign:HintAssist.Hint="Finished Price" 
+                 VerticalAlignment="Center" Height="50"/>
+
+        <!-- Customer Paid Price with Hint -->
+        <TextBox x:Name="PaidPriceBox" 
+                 Grid.Row="2" Grid.Column="1" Margin="133,0,291,20" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                 materialDesign:HintAssist.Hint="Customer Paid Price" 
+                 VerticalAlignment="Center" Height="50"/>
+
+        <!-- Build Description with Hint -->
+        <TextBox x:Name="BuildDescriptionBox" 
+                 Grid.Row="3" Grid.Column="1" Margin="133,5,290,20" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}" 
+                 materialDesign:HintAssist.Hint="Build Description" 
+                 VerticalAlignment="Top" Height="90"/>
+
+        <!-- Finished Time with Hint -->
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Margin="133,0,168,20" VerticalAlignment="Center" Height="25">
+            <DatePicker x:Name="DeliveredTime" 
+                        SelectedDate="2024-01-01" 
+                        Width="213" 
+                        Style="{StaticResource MaterialDesignDatePicker}" 
+                        materialDesign:HintAssist.Hint="Finished Time"/>
         </StackPanel>
 
-        <Button x:Name="SubmitBtn" Content="Accept" HorizontalAlignment="Left" Margin="308,288,0,0" VerticalAlignment="Top" Width="113" Height="33" Click="SubmitBtn_Click"/>
-        <Label Content="Finished time" HorizontalAlignment="Left" Height="31" Margin="121,220,0,0" VerticalAlignment="Top" Width="125"/>
-
+        <!-- Submit Button -->
+        <Button x:Name="SubmitBtn" 
+                Content="Accept" 
+                Grid.Row="5" Grid.Column="1" 
+                HorizontalAlignment="Left" 
+                Margin="191,10,0,10" 
+                Padding="10,5" 
+                Width="100" 
+                Style="{StaticResource MaterialDesignRaisedButton}" 
+                Click="SubmitBtn_Click"/>
     </Grid>
 </Window>
